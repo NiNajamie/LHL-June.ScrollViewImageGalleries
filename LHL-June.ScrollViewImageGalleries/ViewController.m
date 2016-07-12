@@ -28,15 +28,19 @@
                           [UIImage imageNamed:@"Lighthouse-night"],
                           [UIImage imageNamed:@"Lighthouse-zoomed"]
                           ];
-    
+    CGFloat originX = 0;
     for (int i = 0; i <[self.listOfImages count]; i++) {
 
         UIImageView *imageView = [[UIImageView alloc] initWithImage:self.listOfImages[i]];
-        imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        imageView.frame = CGRectMake(originX, 0, self.view.frame.size.width, self.view.frame.size.height);
+        
+        // imageView1 next to imageView2 and imageView3
+        originX += self.view.frame.size.width;
         
         [self.myScrollView addSubview:imageView];
     }
-
+    //Paging galleries
+    self.myScrollView.contentSize = CGSizeMake(originX, self.myScrollView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
